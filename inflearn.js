@@ -1,6 +1,17 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
+
+const cron = require('node-cron');
+
+
+cron.schedule('* * * * *', async()=>{
+  console.log('node-cron 실행됨');
+  main();
+});
+
+
+
 async function main(keyword) {
   const resp = await axios.get(
     'https://www.livenation.kr/event/allevents'
@@ -38,7 +49,7 @@ async function main(keyword) {
   });
 }
 
-main();
+
 
 
 // axios를 활용해 AJAX로 HTML 문서를 가져오는 함수 구현
